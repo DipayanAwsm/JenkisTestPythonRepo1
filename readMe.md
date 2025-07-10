@@ -1,0 +1,1 @@
+It will read File From input foldder and  generate Output in outputFolders
