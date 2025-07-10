@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/DipayanAwsm/JenkisTestPythonRepo1.git' , branch: 'main'
+                git 'https://github.com/DipayanAwsm/JenkisTestPythonRepo1.git' 
             }
         }
         stage('Install Dependencies') {
