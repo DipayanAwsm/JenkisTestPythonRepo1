@@ -37,7 +37,7 @@ print("Day:", day)
 print("Week Number:", week_number)
 ###############################
 parser = argparse.ArgumentParser(description="Process some inputs.")
-parser.add_argument("--inputFile", default="./input/inputFile.csv", help="Your age")
+parser.add_argument("--inputFile", default="inputFile.csv", help="Your age")
 args = parser.parse_args()
 
 
