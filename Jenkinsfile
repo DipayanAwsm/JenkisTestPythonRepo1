@@ -17,18 +17,21 @@ pipeline {
 
         stage('Install Requirements (if possible)') {
             steps {
-                sh 'python3 -m venv venvTemp'
-                sh '. venvTemp/bin/activate'
-                // sh 'pip install -r requirements.txt'
+                sh '''
+                    python3 -m venv venvTemp
+                    . venvTemp/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Run Python Code') {
             steps {
                 sh '''
-            . venvTemp/bin/activate
-            python PythonCode.py
-             '''
+                    . venvTemp/bin/activate
+                    python PythonCode.py
+                '''
             }
         }
     }
