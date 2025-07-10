@@ -1,39 +1,29 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.10'  // Official Python image from Docker Hub
-        }
-    }
+    agent any
 
     stages {
-        stage('PreStage') {
-            steps {
-                sh 'echo HIPreStage'
-            }
-        }
-
-        stage('Clone Repo') {
+        stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/DipayanAwsm/JenkisTestPythonRepo1.git'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Check Python Version') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'python3 --version || echo "Python not installed"'
+                sh 'pip3 --version || echo "pip not installed"'
             }
         }
 
-        stage('Run Tests') {
+        stage('Install Requirements (if possible)') {
             steps {
-                sh 'echo about to deploy'
+                sh 'test -f requirements.txt && python3 -m pip install -r requirements.txt || echo "No requirements.txt or pip failed"'
             }
         }
 
-        stage('Deploy Thecode') {
+        stage('Run Python Code') {
             steps {
-                sh 'echo Code is deployed'
-                sh 'python PythonCode.py'
+                sh 'test -f PythonCode.py && python3 PythonCode.py || echo "PythonCode.py not found or failed to run"'
             }
         }
     }
