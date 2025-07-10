@@ -18,8 +18,8 @@ pipeline {
         stage('Install Requirements (if possible)') {
             steps {
                 sh 'python3 -m venv venvTemp'
-                sh '. venvTemp/bin/activate
-                 python3 -m pip install -r requirements.txt'
+                sh '. venvTemp/bin/activate'
+                 sh 'pip install -r requirements.txt'
             }
         }
 
