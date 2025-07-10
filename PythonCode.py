@@ -42,7 +42,7 @@ args = parser.parse_args()
 
 
 inputFileLocation = args.inputFile
-
+print("file is written at: ",today)
 
 df = pd.read_csv(inputFileLocation)
 ###########################
